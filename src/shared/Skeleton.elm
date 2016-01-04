@@ -27,7 +27,6 @@ header name =
         ]
         [ img [ src "/assets/logo.svg", style [ "width" => "24px" ] ] []
         ]
-    , ul [] (List.map (tab name) [ "examples", "docs", "community", "blog" ])
     ]
 
 
@@ -46,8 +45,8 @@ tab currentName name =
 
 footer =
   div [class "footer"]
-    [ text "All code for this site is open source and written in Elm. "
-    , a [ class "grey-link", href "https://github.com/elm-lang/elm-lang.org/" ] [ text "Check it out" ]
-    , text "! — © 2012-2016 Evan Czaplicki"
+    [ text "This site is an adaptation of "
+    , a [ class "grey-link", href "http://elm-lang.org" ] [ text "elm-lang.org" ]
+    , text "."
     ]
 

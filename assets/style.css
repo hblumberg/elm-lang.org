@@ -76,6 +76,7 @@ a:hover {
 #tabs {
   padding: 1em;
   background-color: #60B5CC;
+  min-height: 25px;
 }
 
 #tabs ul {

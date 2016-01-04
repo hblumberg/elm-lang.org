@@ -125,9 +125,11 @@ code name source =
         css "/editor/editor.css"
         js "/assets/codemirror-5.0/lib/codemirror.js"
         js "/assets/codemirror-5.0/mode/elm/elm.js"
+        js "/assets/file-saver.js"
         js "/editor/controls.js"
         js "/editor/editor.js"
       H.body $ do
+        H.input ! A.type_ "file" ! A.style "visibility:hidden;position:absolute;top:0;" ! A.id "fileUploader" ! A.onchange "uploadFile(event)"
         H.form ! A.id "inputForm" ! A.action "/compile" ! A.method "post" ! A.target "output" $ do
            H.div ! A.id "controls" $ ""
            H.div ! A.id "editor_box" $

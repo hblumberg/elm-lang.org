@@ -20,7 +20,9 @@ main =
 
 view : Int -> List Info -> Html
 view outerWidth hints =
-  let px = toString (outerWidth - 340) ++ "px"
+  let w = round ((340/3) * 5)
+  in
+  let px = toString (outerWidth - w) ++ "px"
   in
   div [ class "options" ]
     [ div [ class "hint", style [("width", px)] ] (viewHintList hints)
@@ -42,6 +44,18 @@ view outerWidth hints =
         , onClick lightsMailbox.address ()
         ]
         [ text "Lights" ]
+    , div
+        [ class "button blue"
+        , title "Save contents of editor"
+        , onClick saveMailbox.address ()
+        ]
+        [ text "Save" ]
+    , div
+        [ class "button green"
+        , title "Upload file to editor"
+        , onClick uploadMailbox.address ()
+        ]
+        [ text "Upload" ]
     ]
 
 
@@ -64,6 +78,8 @@ viewHint hint =
 compileMailbox = Signal.mailbox ()
 hotSwapMailbox = Signal.mailbox ()
 lightsMailbox = Signal.mailbox ()
+saveMailbox = Signal.mailbox ()
+uploadMailbox = Signal.mailbox ()
 
 
 port compile : Signal ()
@@ -80,6 +96,15 @@ port lights : Signal ()
 port lights =
   lightsMailbox.signal
 
+
+port save : Signal ()
+port save =
+  saveMailbox.signal
+
+
+port upload : Signal ()
+port upload =
+  uploadMailbox.signal
 
 
 

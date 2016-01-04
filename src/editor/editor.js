@@ -73,6 +73,8 @@ function initEditor()
 	controls.ports.compile.subscribe(compile);
 	controls.ports.hotSwap.subscribe(hotSwap);
 	controls.ports.lights.subscribe(toggleTheme);
+        controls.ports.save.subscribe(saveProgram);
+        controls.ports.upload.subscribe(triggerUpload);
 
 	editor = CodeMirror.fromTextArea(document.getElementById('input'), {
 		lineNumbers: true,
@@ -215,4 +217,34 @@ function toggleTheme()
 	var newTheme = theme === 'mbo' ? 'elegant' : 'mbo';
 	editor.setOption('theme', newTheme);
 	localStorage.setItem(THEME_KEY, newTheme);
+}
+
+
+// UPLOAD
+
+function triggerUpload()
+{
+        document.getElementById("fileUploader").click();
+}
+
+function uploadFile(event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+                var fileContents = event.target.result;
+                editor.getDoc().setValue(fileContents);
+        };
+
+        reader.readAsText(selectedFile);
+}
+
+
+// SAVE
+
+function saveProgram()
+{
+        var code = editor.getValue();
+        var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "PROGRAM_NAME.elm");
 }
