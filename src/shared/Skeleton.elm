@@ -47,6 +47,6 @@ footer =
   div [class "footer"]
     [ text "This site is an adaptation of "
     , a [ class "grey-link", href "http://elm-lang.org" ] [ text "elm-lang.org" ]
-    , text "."
+    , text ". — © 2012-2016 Evan Czaplicki"
     ]
 
