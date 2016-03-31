@@ -1,6 +1,6 @@
+import Color exposing (..)
 import Graphics.Collage exposing (..)
 import Graphics.Element exposing (..)
-import Color exposing (..)
 
 main : Element
 main = collage 500 500

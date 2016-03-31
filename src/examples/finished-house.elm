@@ -42,7 +42,7 @@ door = group
       |> move (0,-210)
   , circle 5
       |> filled white
-      |> move(15,-215)
+      |> move (15,-215)
   ]
 
 bush (x,y) = group

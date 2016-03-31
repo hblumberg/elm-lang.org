@@ -21,10 +21,10 @@ hourHandEnd hour =
   let angle = hour * 30 in
   let x = 100 * sin (degrees angle) in
   let y = 100 * cos (degrees angle) in
-  (x,y)
+    (x,y)
 
 minuteHandEnd minute =
   let angle = minute * 6 in
   let x = 140 * sin (degrees angle) in
   let y = 140 * cos (degrees angle) in
-  (x,y)
+    (x,y)
