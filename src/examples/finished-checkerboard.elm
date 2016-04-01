@@ -11,8 +11,9 @@ checkerBoard n =
   let row = n // 8 in
   let column = n % 8 in
   let c =
-    if ((row % 2 == 0 && n % 2 == 0) || (row % 2 == 1 && n % 2 == 1))
-      then black else red in
+    if (row + column) % 2 == 0
+      then black
+    else red in
   square 50
     |> filled c
     |> move (-175 + (toFloat column) * 50, -175 + (toFloat row) * 50)

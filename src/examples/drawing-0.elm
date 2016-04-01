@@ -7,7 +7,7 @@ halfWidth = 250
 
 main : Signal Element
 main =
-  Signal.map draw (Signal.foldp drawCircle [] Mouse.position)
+  Signal.map show (Signal.foldp drawCircle [] Mouse.position)
 
 drawCircle : (Int,Int) -> List Form -> List Form
 drawCircle (x,y) circleList =
@@ -16,7 +16,3 @@ drawCircle (x,y) circleList =
       |> filled red
       |> move (toFloat x - halfWidth, halfWidth - toFloat y)
   ]
-
-draw : List Form -> Element
-draw form_list =
-  collage (halfWidth * 2) (halfWidth * 2) form_list
