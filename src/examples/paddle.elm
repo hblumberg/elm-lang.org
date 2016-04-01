@@ -57,14 +57,14 @@ draw game =
   let (ball, paddle) = (game.ball, game.paddle) in
   collage (halfWidth * 2) (halfWidth * 2) 
     [ rect (halfWidth * 2) (halfWidth * 2)
-      |> filled gray
-      |> move (0,0)
+        |> filled gray
+        |> move (0,0)
     , circle ball.r
-      |> filled black
-      |> move (ball.x, ball.y)
+        |> filled black
+        |> move (ball.x, ball.y)
     , rect paddle.width paddle.height
-      |> filled purple
-      |> move (paddle.x, paddle.height / 2 - halfWidth)
+        |> filled purple
+        |> move (paddle.x, paddle.height / 2 - halfWidth)
     ]
 
 isTouchingSide : Ball -> Bool
@@ -85,10 +85,15 @@ isTouchingPaddle ball paddle =
 
 updateGame : (Int, Int) -> Game -> Game
 updateGame (mouseX, mouseY) game =
-  if game.hasLost then game else
+  if game.hasLost
+    then game
+  else
     let (ball, paddle) = (game.ball, game.paddle) in
-    if isTouchingBottom ball then { game | hasLost = True } else
-      let newPaddle = { paddle | x = toFloat mouseX - halfWidth } in
+    if isTouchingBottom ball
+      then { game | hasLost = True }
+    else
+      let newPaddle =
+        { paddle | x = toFloat mouseX - halfWidth } in
       let newBall = updateBall ball newPaddle in
       { game |
           ball = newBall,
@@ -97,9 +102,14 @@ updateGame (mouseX, mouseY) game =
 
 updateBall : Ball -> Paddle -> Ball
 updateBall ball paddle =
-  let newVx = if isTouchingSide ball then -ball.vx else ball.vx in
-  let newVy = if (isTouchingTop ball || isTouchingPaddle ball paddle)
-    then -ball.vy else ball.vy in
+  let newVx =
+    if isTouchingSide ball
+      then -ball.vx
+    else ball.vx in
+  let newVy =
+    if (isTouchingTop ball || isTouchingPaddle ball paddle)
+      then -ball.vy
+    else ball.vy in
   { ball |
       x = ball.x + newVx,
       y = ball.y + newVy,
